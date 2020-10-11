@@ -1,1 +1,17 @@
-jjjjjjjjjjjjjjjjjjjjjjjjj
+公開鍵の登録後、動作確認時にエラー
+公開鍵の登録後、GitHubと認証しようとした際にエラーが発生。
+
+$ ssh -T git@github.com
+The authenticity of host 'github.com (192.30.252.131)' can't be established.
+RSA key fingerprint is ＜フィンガープリント＞.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.252.131' (RSA) to the list of known hosts.
+Permission denied (publickey).
+
+ググったところ、ssh-addで秘密鍵を追加すればよいとのこと。
+$ ssh-add /C/Users/＜ユーザ名＞/.ssh/id_rsa
+Could not open a connection to your authentication agent.
+
+エラーが出る。
+
+さらにググったところ、事前にeval `ssh-agent`を実行しないといけない模様。
